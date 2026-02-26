@@ -4,6 +4,16 @@ const os = require('os');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+// Health + API check endpoints (for k8s + frontend)
+app.get("/api", (req, res) => {
+  res.json({ message: "API is working" });
+});
+
+app.get("/api/health", (req, res) => {
+  res.status(200).json({ ok: true, service: "backend" });
+});
+
+
 
 app.use(cors());
 app.use(express.json());

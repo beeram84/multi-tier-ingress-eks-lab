@@ -1,0 +1,20 @@
+# k8s/httproute-canary.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: canary-route
+spec:
+  parentRefs:
+    - name: app-gateway
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /canary
+      backendRefs:
+        - name: frontend
+          port: 80
+          weight: 90
+        - name: backend
+          port: 3000
+          weight: 10
