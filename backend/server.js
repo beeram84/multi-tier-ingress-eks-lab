@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 // Health + API check endpoints (for k8s + frontend)
 app.get("/api", (req, res) => {
-  res.json({ message: "API is working" });
+  res.json({ message: "pong — deployed via CI/CD! 🚀" });
 });
 
 app.get("/api/health", (req, res) => {
